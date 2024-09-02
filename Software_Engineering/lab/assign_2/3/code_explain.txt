@@ -1,0 +1,75 @@
+Question:
+Find the top 10 most recently created or modified files in a specified directory (within the last 20 days), and then list them in order of file size, from largest to smallest.
+
+
+#Line-by-Line Explanation:
+
+1. " #!/bin/bash " :
+   This is called a shebang. 
+   It tells the system that the script should be executed using the Bash shell. 
+   It's a standard way to specify the interpreter that should be used to run the script.
+
+
+
+2. " if [ $# -ne 1 ]; then ":
+   - if starts a conditional statement.
+   - " $# " :  represents the number of arguments passed to the script.
+   - " -ne " :  stands for "not equal".
+   - The condition checks whether the number of arguments (" $# ") is not equal to 1. 
+   If it's not 1, the script proceeds to execute the code block following " then ".
+
+
+
+3. " 	echo "Usage: $0 directory" 	"  :
+   - " echo " prints a message to the terminal.
+   - The message "  "Usage: $0 directory" " provides instructions on how to use the script.
+   - " $0 " represents the name of the script itself.
+   - This line tells the user that they need to provide exactly one argument, which should be a directory path.
+
+4. " exit 1 ":
+   - " exit " ends the script.
+   - The " 1 " is an exit status code, commonly used to indicate that the script has encountered an error or improper usage.
+   - If the number of arguments is not equal to 1, the script exits here and doesn't proceed further.
+
+5. " fi ":
+   - This closes the " if " statement that was opened in line 2. 
+   	If the condition is true (i.e., the number of arguments is not 1), the code between `then` and `fi` is executed, and the script exits. 
+	If the condition is false (i.e., there is exactly one argument), the script continues with the next line.
+
+6. " directory="$1" ":
+   - This line assigns the first argument passed to the script (`$1`) to a variable named " directory ".
+   - " $1 " represents the first command-line argument provided by the user when running the script.
+   - This allows the script to reference the directory provided by the user through the variable `directory`.
+
+7. **`find "$directory" -type f -ctime -20 -exec ls -lh {} +`**:
+   - `find` is a command that searches for files and directories within a given directory tree.
+   - `"$directory"` is the variable containing the directory path provided by the user. This tells `find` where to start searching.
+   - `-type f` restricts the search to regular files only, excluding directories, symbolic links, etc.
+   - `-ctime -20` restricts the search to files that were last created or had their status changed within the last 20 days.
+     - `ctime` refers to the inode change time (which includes file creation or permission changes).
+     - `-20` specifies that we're looking for files created or modified within the last 20 days.
+   - `-exec ls -lh {} +` tells `find` to execute the `ls -lh` command on each file it finds.
+     - `-exec` allows `find` to execute another command on the files it locates.
+     - `ls -lh` lists the files in long format (`-l`) with human-readable sizes (`-h`).
+     - `{}` is a placeholder for the files found by `find`.
+     - `+` at the end of the `-exec` command tells `find` to pass all the found files to a single `ls -lh` command, instead of executing `ls -lh` separately for each file. This makes it more efficient.
+
+8. **`| sort -k 5 -hr`**:
+   - The `|` symbol is a pipe that takes the output from the previous command (`find ... -exec ls -lh ...`) and feeds it as input to the next command (`sort` in this case).
+   - `sort` is a command that sorts lines of text.
+   - `-k 5` tells `sort` to use the fifth column of the output for sorting. In the output of `ls -lh`, the fifth column is the file size.
+   - `-h` enables human-readable number sorting, so file sizes like `1K`, `1M`, and `1G` are sorted correctly.
+   - `-r` sorts in reverse order, so the largest files appear first.
+
+9. **`| head -n 10`**:
+   - This pipe (`|`) feeds the sorted list of files to the `head` command.
+   - `head` is a command that prints the first few lines of a file or output.
+   - `-n 10` tells `head` to display only the first 10 lines of the input.
+   - As a result, this line limits the output to the top 10 largest files that were modified or created within the last 20 days.
+
+### Summary:
+
+- The script expects one argument: a directory path.
+- It searches the specified directory for files that were created or modified in the last 20 days.
+- The script lists these files, sorts them by size in descending order, and displays the top 10 largest files.
+- If the user doesn't provide a directory, the script exits with an error message.

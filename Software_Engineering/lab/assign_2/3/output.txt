@@ -1,0 +1,10 @@
+-rw------- 1 arnav arnav 384M Jul 26 11:53 /home/arnav/Downloads/Screencast 2024-07-26 11:53:33.mp4
+-rw-rw-r-- 1 arnav arnav 222M Aug  6 14:53 /home/arnav/Downloads/dataset(1).zip
+-rw-rw-r-- 1 arnav arnav 222M Aug  6 14:51 /home/arnav/Downloads/dataset.zip
+-rw-rw-r-- 1 arnav arnav 120M Aug  9 10:13 /home/arnav/Downloads/04 Software Modeling in UML-20240809T042322Z-001.zip
+-rw-rw-r-- 1 arnav arnav  59M Jul 24 21:24 /home/arnav/Downloads/Computer Networking_ A Top-Down Approach, Global Edition, 8th Edition.pdf
+-rw-rw-r-- 1 arnav arnav  24M Aug  9 10:07 /home/arnav/Downloads/05 Software Testing & Maintenance-20240809T043014Z-001.zip
+-rw-rw-r-- 1 arnav arnav  24M Aug  9 09:59 /home/arnav/Downloads/05 Software Testing & Maintenance-20240809T042323Z-001.zip
+-rw-rw-r-- 1 arnav arnav  23M Aug  9 09:55 /home/arnav/Downloads/03 Software Development Life Cycle-20240809T042321Z-001.zip
+-rw-rw-r-- 1 arnav arnav  20M Jul 24 10:06 /home/arnav/Downloads/ISLP_website-2.pdf
+-rw-rw-r-- 1 arnav arnav  19M Aug  9 09:56 /home/arnav/Downloads/02 Object Oriented Programming in C++-20240809T042319Z-001.zip
